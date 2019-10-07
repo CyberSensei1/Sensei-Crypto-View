@@ -547,7 +547,7 @@ th{
 .two-col{
   display: inline-block;
   width: 16.25%;
-  text-align: center;
+  float: left;
 }
 
 .logo{
@@ -646,6 +646,7 @@ div.Select-value, .Select-control,div.period, .Select-input{
 
 .chart-graph{
   padding-bottom: 16px;
+  clear:both;
 }
 
 .inline-block{

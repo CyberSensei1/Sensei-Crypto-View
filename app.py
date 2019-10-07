@@ -23,13 +23,13 @@ app = dash.Dash(
 app.layout = html.Div(
     className="row",
     children=[
-    dcc.Dropdown(
+    html.Div(dcc.Dropdown(
         id='my-dropdown',
         className='two-col',
         options=[{'label':'Binance:'+format(coin), 'value':coin} for coin in get_symbols()],
         value='BTCUSDT'
-    ),
-    dcc.Dropdown(
+    )),
+    html.Div(dcc.Dropdown(
         id='my-dropdown-ticker',
         className='two-col',
         options=[{'label':'1m', 'value':'1m'},
@@ -48,7 +48,7 @@ app.layout = html.Div(
                  {'label':'1w', 'value':'1w'},
                  {'label':'1M', 'value':'1M'}],
         value='2h'
-    ),
+    )),
     dcc.Graph(
         id='graph',
         className='chart-graph'
