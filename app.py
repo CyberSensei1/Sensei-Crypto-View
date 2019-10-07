@@ -20,23 +20,47 @@ app = dash.Dash(
     __name__, meta_tags=[{"name": "viewport", "content": "width=device-width"}]
 )
 
-app.layout = html.Div([
+app.layout = html.Div(
+    className="row",
+    children=[
     dcc.Dropdown(
         id='my-dropdown',
+        className='two-col',
         options=[{'label':'Binance:'+format(coin), 'value':coin} for coin in get_symbols()],
         value='BTCUSDT'
     ),
+    dcc.Dropdown(
+        id='my-dropdown-ticker',
+        className='two-col',
+        options=[{'label':'1m', 'value':'1m'},
+                 {'label':'3m', 'value':'3m'},
+                 {'label':'5m', 'value':'5m'},
+                 {'label':'15m', 'value':'15m'},
+                 {'label':'30m', 'value':'30m'},
+                 {'label':'1h', 'value':'1h'},
+                 {'label':'2h', 'value':'2h'},
+                 {'label':'4h', 'value':'4h'},
+                 {'label':'6h', 'value':'6h'},
+                 {'label':'8h', 'value':'8h'},
+                 {'label':'12h', 'value':'12h'},
+                 {'label':'1d', 'value':'1d'},
+                 {'label':'3d', 'value':'3d'},
+                 {'label':'1w', 'value':'1w'},
+                 {'label':'1M', 'value':'1M'}],
+        value='2h'
+    ),
     dcc.Graph(
-        id='graph'
+        id='graph',
+        className='chart-graph'
     )
 ])
 
 
 @app.callback(
     dash.dependencies.Output('graph', 'figure'),
-    [dash.dependencies.Input('my-dropdown', 'value')])
-def update_output(value):
-    url = "https://www.binance.com/api/v1/klines?symbol="+format(value)+"&interval=1d"
+    [dash.dependencies.Input('my-dropdown', 'value'),dash.dependencies.Input('my-dropdown-ticker', 'value')])
+def update_output(value,valueticker):
+    url = "https://www.binance.com/api/v1/klines?symbol="+format(value)+"&interval="+format(valueticker)
     response = urllib.request.urlopen(url)
     df = pandas.read_json(response.read())
 
