@@ -1,3 +1,3 @@
 # Sensei-Crypto-View
 
-![screenshot](https://image.prntscr.com/image/Hx_-Sz1ATOqBQtSbWLii5A.png)
+![screenshot](hhttps://raw.githubusercontent.com/CyberSensei1/Sensei-Crypto-View/master/assets/screenshot.png)
